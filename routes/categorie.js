@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const Categorie = require('../Model/Categorie');
+const { Categorie } = require('../database/database');
 
 //Importer les packages pour créer un route
 const router = require('express').Router();

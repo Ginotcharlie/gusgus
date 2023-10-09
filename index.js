@@ -24,8 +24,9 @@ app.use("/api/produits", products); // Routes pour les produits
 app.use("/api/panier", panier);
 
 // Connection à la base de données MySQL
-sequelize.initDb();
-// Initialisation du serveur
-app.listen(4000, () => {
-  console.log("Serveur express en écoute sur le port 4000");
+sequelize.initDb().then(() => {
+  // Initialisation du serveur
+  app.listen(4000, () => {
+    console.log("Serveur express en écoute sur le port 4000");
+  });
 });

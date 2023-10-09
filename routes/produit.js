@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Produit = require("../Model/Produit");
+const { Produit } = require("../database/database");
 
 router.get("/", async (req, res) => {
   try {
@@ -29,6 +29,18 @@ router.get("/productsByNom/:produit ", (req, res) => {
       },
     },
   });
+});
+
+router.post("/add", (req, res) => {
+  Produit.create(req.body)
+    .then((produit) => {
+      res.json({ produit });
+    })
+    .catch((error) => {
+      const message =
+        "Le produit n'a pas pu etre ajouter. Ressayer dans quelque instants.";
+      res.statut(500).json({ message, data: error });
+    });
 });
 
 module.exports = router;
